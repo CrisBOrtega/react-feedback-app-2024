@@ -1,3 +1,5 @@
+
+import {motion, AnimatePresence} from 'framer-motion'
 import React from 'react';
 import ComentarioItem from './ComentarioItem';
 
@@ -10,10 +12,15 @@ function ComentarioLista({ comments,
         return <p> No hay comentarios </p>
     }else{
         return (
-            <div className='comments'>
-                            <ul>
-                                { 
+            <div className='feedback-list'>
+                            <AnimatePresence>
+                                {
                                     comments.map( comentario  => 
+                                        <motion.div
+                                            key={comentario.id}
+                                            initial={{opacity: 0}}
+                                            animate={{opacity: 1}}
+                                            exit={{opacity:0}}>
                                         <ComentarioItem 
                                                 key={comentario.id}
                                                 comentario={comentario.comentario}
@@ -22,9 +29,10 @@ function ComentarioLista({ comments,
                                                 handleDelete={handleDelete}
                                                
                                         />
+                                        </motion.div>
                                     )
                                 }
-                            </ul>
+                           </AnimatePresence>
                 
             </div>
           )

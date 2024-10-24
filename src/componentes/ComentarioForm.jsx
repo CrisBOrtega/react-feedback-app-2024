@@ -2,18 +2,33 @@ import { React, useState } from 'react'
 import Card from './Card'
 import ComentarioCalificacion from './ComentarioCalificacion'
 
-const ComentarioForm = () => {
+const ComentarioForm = ({handleAdd}) => {
 
-    const[ text , setText ] = useState('')
+    const[ text , setText ] = useState('');
+    const[rating , setRating] = useState(10);
 
     const handleTextChange = (e) => {
         setText( e.target.value )
     }
 
+
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        
+        const newcomentario = {
+                comentario: text, 
+                calificacion: rating
+        }
+
+       handleAdd(newcomentario )
+       setText('')
+        
+    }
+
   return (
     <Card>
-        <form>
-            <ComentarioCalificacion />
+        <form onSubmit={ handleSubmit }>
+            <ComentarioCalificacion select={(rating)=> setRating(rating) } />
             <div className='input-group'>
                         <input type='text' 
                                value={ text }
