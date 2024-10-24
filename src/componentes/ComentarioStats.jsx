@@ -1,15 +1,18 @@
 import React from 'react'
+import {useContext} from "react";
+import FeedBackContext from "../context/FeedBackContext";
+
 
 const ComentarioStats = ({ comentarios }) => {
 
-
+    const { comments } = useContext(FeedBackContext);
 
   return (
     <div className='feedback-stats'>
         {/* El numero de comentarios que hay 
             en el arreglo de comentario    
         */}
-        <h4> Comentarios:    </h4>
+        <h4> Comentarios: { comments.length }  </h4>
         {/* El promedio de Calificaciones 
             de los comentarios en el arreglo
             reduce

@@ -1,12 +1,14 @@
 
 import {motion, AnimatePresence} from 'framer-motion'
 import React from 'react';
+import {useContext} from "react";
+import FeedBackContext from "../context/FeedBackContext";
 import ComentarioItem from './ComentarioItem';
 
-function ComentarioLista({ comments,
-                           handleDelete }) {
+function ComentarioLista({ handleDelete }) {
 
-   
+
+    const { comments } = useContext(FeedBackContext);
 
     if(comments.length === 0 || !comments  ){
         return <p> No hay comentarios </p>
