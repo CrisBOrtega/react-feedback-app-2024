@@ -1,8 +1,7 @@
-import { v4 as uuidv4 } from 'uuid';
+
 import { BrowserRouter as Router , Route, Routes, NavLink } from 'react-router-dom';
-import {React , useState } from 'react'
+import {React } from 'react'
 import Header from './componentes/Header';
-import comentarios from './data/Comentarios';
 import ComentarioLista from './componentes/ComentarioLista';
 import ComentarioStats from './componentes/ComentarioStats';
 import ComentarioForm from './componentes/ComentarioForm';
@@ -13,27 +12,7 @@ import Post from './componentes/Post';
 import {FeedBackProvider} from "./context/FeedBackContext";
 
 function App() {
-
-    const [comments , 
-          setComments ] = useState(comentarios)
-
-
-    const addComentario = (newComentario) => {
-      newComentario.id = uuidv4();
-       
-      setComments([newComentario , ...comments]) 
-      console.log(comments)
-    }
-    
-    const borrarItem = id => {
-            if(window.confirm
-                  ("Está seguro de borrar el comentario?")){
-                //asignar nuevo estado a comments:
-                //filter: para quitar los comentarios
-                //cuyo id concuerde con el parametro 
-                setComments(comments.filter((c)=> c.id !== id   )  )    
-            }
-    }        
+    //ya no necesitamos el estado nase en app
 
     const titulo =  "App de Comentarios";
     const Autor = "Cristian Buitrago"
@@ -49,10 +28,9 @@ function App() {
                   <Routes>
                       <Route exact path='/' element={
                           <>
-                              <ComentarioForm handleAdd={addComentario}/>
+                              <ComentarioForm />
                               <ComentarioStats />
-                              <ComentarioLista
-                                  handleDelete={borrarItem}  />
+                              <ComentarioLista />
                           </>
                       }>
                       </Route>

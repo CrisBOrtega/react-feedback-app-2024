@@ -1,8 +1,11 @@
-import { React, useState } from 'react'
+import { React, useState, useContext } from 'react'
 import Card from './Card'
 import ComentarioCalificacion from './ComentarioCalificacion'
+import FeedBackContext from "../context/FeedBackContext";
 
-const ComentarioForm = ({handleAdd}) => {
+const ComentarioForm = () => {
+
+    const { addComentario } = useContext(FeedBackContext)
 
     const[ text , setText ] = useState('');
     const[rating , setRating] = useState(10);
@@ -20,7 +23,7 @@ const ComentarioForm = ({handleAdd}) => {
                 calificacion: rating
         }
 
-       handleAdd(newcomentario )
+       addComentario(newcomentario )
        setText('')
         
     }

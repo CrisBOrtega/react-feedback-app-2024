@@ -5,7 +5,7 @@ import {useContext} from "react";
 import FeedBackContext from "../context/FeedBackContext";
 import ComentarioItem from './ComentarioItem';
 
-function ComentarioLista({ handleDelete }) {
+function ComentarioLista() {
 
 
     const { comments } = useContext(FeedBackContext);
@@ -25,10 +25,8 @@ function ComentarioLista({ handleDelete }) {
                                             exit={{opacity:0}}>
                                         <ComentarioItem 
                                                 key={comentario.id}
-                                                comentario={comentario.comentario}
-                                                calificacion={comentario.calificacion}
-                                                id = { comentario.id }
-                                                handleDelete={handleDelete}
+                                                item={comentario}
+                                               //ya no se necesita el delete  en item
                                                
                                         />
                                         </motion.div>
